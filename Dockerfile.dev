@@ -1,5 +1,6 @@
 # docker build -f Dockerfile.dev .
 # docker run -it -p 3000:3000 <ContainerID> --> http://localhost:3000
+# docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <ContainerID> --> http://localhost:3000
 
 # Specify a base image
 FROM node:alpine

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      # do not try to map a folder up against app/node_modules inside a container
+      - /app/node_modules
+      - .:/app
