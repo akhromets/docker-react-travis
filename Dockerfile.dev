@@ -1,6 +1,7 @@
 # docker build -f Dockerfile.dev .
 # docker run -it -p 3000:3000 <ContainerID> --> http://localhost:3000
 # docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <ContainerID> --> http://localhost:3000
+# docker run -it <ContainerID> npm run test
 
 # Specify a base image
 FROM node:alpine
@@ -11,6 +12,8 @@ WORKDIR '/app'
 COPY package*.json ./
 RUN npm install
 
+# reminder to use COPY in production
+# because for dev env we use volumes
 COPY ./ ./
 
 # Default command
