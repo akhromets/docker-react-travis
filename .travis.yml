@@ -10,3 +10,16 @@ before_install:
 # -e CI=true (for exit after tests execution)
 script:
   - docker run -e CI=true akhromets/docker-react-travis npm run test -- --coverage
+
+deploy:
+  edge: true # Fix for Missing bucket_name error
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-travis"
+  env: "DockerReactTravis-env"
+  bucket_name: "elasticbeanstalk-us-east-1-213672334613"
+  bucket_path: "docker-react-travis"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
